@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<style>
+
+/* Background */
+body{
+    margin:0;
+    height:100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Card */
+#login_div{
+    background:white;
+    padding:35px 40px;
+    width:350px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    animation: fadeIn 0.6s ease;
+}
+
+/* Title */
+#login_div h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#2b2e4a;
+}
+
+/* Form */
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+/* Inputs */
+input, select{
+    padding:11px;
+    margin-bottom:15px;
+    border-radius:7px;
+    border:1px solid #ccc;
+    font-size:14px;
+    transition:0.3s;
+}
+
+/* Focus glow */
+input:focus, select:focus{
+    outline:none;
+    border-color:#667eea;
+    box-shadow:0 0 6px rgba(102,126,234,0.5);
+}
+
+/* Button */
+#login_btn{
+    background:#667eea;
+    color:white;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+/* Hover */
+#login_btn:hover{
+    background:#5a67d8;
+    transform:scale(1.02);
+}
+
+/* Animation */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(15px)}
+    to{opacity:1; transform:translateY(0)}
+}
+
+/* Mobile Responsive */
+@media(max-width:420px){
+    #login_div{
+        width:90%;
+        padding:30px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="login_div">
+<h2>Login Form</h2>
+
+<form id="login_form">
+
+<input type="email" placeholder="Enter your email" id="email" required>
+
+<input type="password" placeholder="Enter your password" id="password" required>
+
+<select id="role" required>
+<option value="">Choose role</option>
+<option value="Teacher">Teacher</option>
+<option value="Student">Student</option>
+</select>
+
+<button type="button" id="login_btn">Login</button>
+
+</form>
+</div>
+
+<script src="{% static 'l.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Available Books</h2>
+
+{% for book in books %}
+
+<p>
+
+{{book.title}}
+
+{{book.author_name}}
+
+{{book.status}}
+
+</p>
+
+{% endfor %}
+
+{% endblock %}

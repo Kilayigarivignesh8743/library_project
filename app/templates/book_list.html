@@ -1,0 +1,334 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Library Management System</title>
+
+<style>
+
+body{
+background:#f4f6ff;
+font-family:Arial;
+margin:0;
+}
+
+h1{
+text-align:center;
+color:#2b2e4a;
+margin-top:20px;
+}
+
+
+/* Card */
+
+.box{
+
+width:85%;
+
+background:white;
+
+margin:20px auto;
+
+padding:20px;
+
+border-radius:10px;
+
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+
+}
+
+
+/* Inputs */
+
+input{
+
+padding:8px;
+
+width:200px;
+
+margin:5px;
+
+border-radius:5px;
+
+border:1px solid #ccc;
+
+}
+
+
+/* Buttons */
+
+button{
+
+padding:8px 14px;
+
+border:none;
+
+border-radius:5px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+.add-btn{ background:#1cc88a; }
+
+.edit-btn{ background:#f6c23e; }
+
+.update-btn{ background:#36b9cc; }
+
+.delete-btn{ background:#e74a3b; }
+
+.issue-btn{ background:#4e73df; }
+
+
+/* Table */
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+th{
+
+background:#4e73df;
+
+color:white;
+
+padding:10px;
+
+}
+
+
+td{
+
+padding:10px;
+
+text-align:center;
+
+border-bottom:1px solid #ddd;
+
+}
+
+
+.status-available{
+
+color:green;
+
+font-weight:bold;
+
+}
+
+
+.status-issued{
+
+color:red;
+
+font-weight:bold;
+
+}
+
+
+#editBox{
+
+display:none;
+
+}
+
+
+/* Issue Link */
+
+.issue-link{
+
+text-decoration:none;
+
+background:#4e73df;
+
+color:white;
+
+padding:5px 10px;
+
+border-radius:5px;
+
+}
+
+</style>
+
+
+<script src="{% static 'library.js' %}"></script>
+
+</head>
+
+<body>
+
+
+<h1>📚 Library Management System</h1>
+
+
+
+<!-- ADD BOOK (ONLY TEACHER) -->
+
+{% if user.role == "Teacher" %}
+
+<div class="box">
+
+<h3>Add Book</h3>
+
+<input id="title" placeholder="Enter Title">
+
+<input id="author_name" placeholder="Enter Author">
+
+<button class="add-btn" onclick="addBook()">
+
+Add Book
+
+</button>
+
+</div>
+
+{% endif %}
+
+
+
+
+<!-- EDIT BOOK (ONLY TEACHER) -->
+
+{% if user.role == "Teacher" %}
+
+<div class="box" id="editBox">
+
+<h3>Edit Book</h3>
+
+<input id="uid" readonly>
+
+<input id="utitle" placeholder="Title">
+
+<input id="uauthor" placeholder="Author">
+
+<button class="update-btn" onclick="updateBook()">
+
+Update Book
+
+</button>
+
+</div>
+
+{% endif %}
+
+
+
+
+<!-- BOOK TABLE -->
+
+<div class="box">
+
+<h3>Book List</h3>
+
+<table>
+
+
+<tr>
+
+<th>ID</th>
+
+<th>Title</th>
+
+<th>Author</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+</tr>
+
+
+
+{% for book in books %}
+
+<tr>
+
+
+<td>{{book.id}}</td>
+
+
+<td>{{book.title}}</td>
+
+
+<td>{{book.author_name}}</td>
+
+
+
+<td class="{% if book.status == 'Issued' %}status-issued{% else %}status-available{% endif %}">
+
+{{book.status}}
+
+</td>
+
+
+
+<td>
+
+
+{% if user.role == "Teacher" %}
+
+
+<a href="/issue/" class="issue-link">
+
+Issue Book
+
+</a>
+
+
+<button class="edit-btn"
+
+onclick="loadEdit('{{book.id}}','{{book.title}}','{{book.author_name}}')">
+
+Edit
+
+</button>
+
+
+
+<button class="delete-btn"
+
+onclick="deleteBook('{{book.id}}')">
+
+Delete
+
+</button>
+
+
+{% else %}
+
+
+View Only
+
+
+{% endif %}
+
+
+</td>
+
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</table>
+
+
+</div>
+
+
+
+</body>
+
+</html>
