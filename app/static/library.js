@@ -9,7 +9,7 @@ function addBook() {
         return;
     }
 
-    fetch("http://127.0.0.1:8000/add_book/", {
+    fetch("https://library-project-1-vhbe.onrender.com/add_book/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -30,7 +30,7 @@ function addBook() {
 // ================= GET BOOKS =================
 function getBooks() {
 
-    fetch("http://127.0.0.1:8000/get_book/")
+    fetch("https://library-project-1-vhbe.onrender.com/get_book/")
         .then(res => res.json())
         .then(data => {
             console.log("All Books:", data.data);
@@ -58,7 +58,7 @@ function updateBook() {
     let title = document.getElementById("utitle").value;
     let author = document.getElementById("uauthor").value;
 
-    fetch(`http://127.0.0.1:8000/update_book/${id}/`, {
+    fetch(`https://library-project-1-vhbe.onrender.com/update_book/${id}/`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -83,7 +83,7 @@ function deleteBook(id) {
         return;
     }
 
-    fetch(`http://127.0.0.1:8000/delete_book/${id}/`, {
+    fetch(`https://library-project-1-vhbe.onrender.com/${id}/`, {
         method: "DELETE"
     })
         .then(res => res.json())
@@ -106,7 +106,7 @@ function issueBook(id, btn) {
         return;
     }
 
-    fetch(`http://127.0.0.1:8000/issue_book/${id}/`, {
+    fetch(`https://library-project-1-vhbe.onrender.com/${id}/`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -127,7 +127,7 @@ function issueBook(id, btn) {
 // ================= RETURN BOOK =================
 function returnBook(id) {
 
-    fetch(`http://127.0.0.1:8000/return_book/${id}/`, {
+    fetch(`https://library-project-1-vhbe.onrender.com/${id}/`, {
         method: "PUT"
     })
         .then(res => res.json())
