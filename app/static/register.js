@@ -23,7 +23,7 @@ reg_btn.addEventListener("click", () => {
     //     cp: c_password,
     //     r:role
     // };
-    fetch("http://127.0.0.1:8000/register/",{
+    fetch("https://library-project-1-vhbe.onrender.com/register/",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
